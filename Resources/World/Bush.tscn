@@ -7,9 +7,6 @@ radius = 8.0
 height = 12.0
 
 [node name="Bush" type="StaticBody2D"]
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -4 )
