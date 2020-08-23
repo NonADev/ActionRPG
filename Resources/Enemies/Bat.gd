@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 export(int) var ACCELERATION = 300
 export(int) var MAX_SPEED = 50
-export(int) var FRICTION = 100
+export(int) var FRICTION = 120
 
 const EnemyDeathEffect = preload("res://Resources/Effects/EnemyDeathEffect.tscn")
 var knockback = Vector2.ZERO
@@ -38,7 +38,7 @@ func _physics_process(delta):
 			else:
 				state = IDLE
 
-	move_and_slide(velocity)
+	velocity = move_and_slide(velocity)
 
 
 func seek_player():
