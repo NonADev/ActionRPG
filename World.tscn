@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://Resources/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Resources/World/Bush.tscn" type="PackedScene" id=2]
@@ -7,6 +7,24 @@
 [ext_resource path="res://Resources/World/CliffTileset.png" type="Texture" id=5]
 [ext_resource path="res://Resources/World/Grass.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Resources/Enemies/Bat.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Resources/UI/HealthUI.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Resources/World/Tree.tscn" type="PackedScene" id=9]
+
+[sub_resource type="TileSet" id=50]
+0/name = "GrassBackground.png 0"
+0/texture = ExtResource( 3 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 64, 64 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
 
 [sub_resource type="TileSet" id=1]
 0/name = "DirtTileset.png 0"
@@ -486,20 +504,33 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
+[node name="HealthUI" parent="HUD" instance=ExtResource( 8 )]
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 60.0
+margin_bottom = 14.0
+
 [node name="BackGround" type="CanvasLayer" parent="."]
 layer = -1
+follow_viewport_enable = true
 __meta__ = {
 "_editor_description_": "Acho que não vai ter"
 }
 
 [node name="Sprite" type="Sprite" parent="BackGround"]
+visible = false
 position = Vector2( 160, 90 )
 texture = ExtResource( 3 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 320, 180 )
+region_rect = Rect2( 0, 0, 448, 288 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="GrassTileMap" type="TileMap" parent="BackGround"]
+tile_set = SubResource( 50 )
+format = 1
+tile_data = PoolIntArray( -1, 0, 0, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, -65532, 0, 0, -65531, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 131071, 0, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 196607, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0 )
 
 [node name="DirtPathTileMap" type="TileMap" parent="BackGround"]
 tile_set = SubResource( 1 )
@@ -514,10 +545,19 @@ collision_mask = 0
 format = 1
 tile_data = PoolIntArray( -1, 0, 0, -65536, 0, 1, -65535, 0, 1, -65534, 0, 1, -65533, 0, 2, -65528, 0, 0, -65527, 0, 1, -65526, 0, 2, 65535, 0, 65536, 0, 0, 65541, 1, 0, 131073, 2, 0, 131073, 3, 0, 131074, 8, 0, 131072, 9, 0, 65544, 10, 0, 131074, 131071, 0, 131072, 65536, 0, 131074, 65545, 0, 131075, 196612, 0, 3, 196617, 0, 0, 196618, 0, 2, 262146, 0, 0, 262147, 0, 1, 262148, 0, 131079, 262152, 0, 196608, 262153, 0, 196617, 262154, 0, 131074, 327680, 0, 196608, 327681, 0, 196609, 327682, 0, 196614, 327683, 0, 131073, 327684, 0, 131074, 327689, 0, 131075 )
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 168, 80 )
+current = true
+smoothing_enabled = true
+smoothing_speed = 8.0
+
 [node name="Level" type="YSort" parent="."]
 
 [node name="Player" parent="Level" instance=ExtResource( 1 )]
 position = Vector2( 168, 80 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Level/Player"]
+remote_path = NodePath("../../../Camera2D")
 
 [node name="Bushes" type="YSort" parent="Level"]
 
@@ -606,10 +646,24 @@ position = Vector2( 208, 128 )
 [node name="Enemies" type="YSort" parent="Level"]
 
 [node name="Bat" parent="Level/Enemies" instance=ExtResource( 7 )]
-position = Vector2( 216, 48 )
+position = Vector2( 184, 24 )
 
 [node name="Bat2" parent="Level/Enemies" instance=ExtResource( 7 )]
 position = Vector2( 216, 160 )
 
 [node name="Bat4" parent="Level/Enemies" instance=ExtResource( 7 )]
 position = Vector2( 40, 96 )
+
+[node name="Trees" type="YSort" parent="Level"]
+
+[node name="Tree" parent="Level/Trees" instance=ExtResource( 9 )]
+position = Vector2( 232, 56 )
+
+[node name="Tree2" parent="Level/Trees" instance=ExtResource( 9 )]
+position = Vector2( 120, 152 )
+
+[node name="Tree3" parent="Level/Trees" instance=ExtResource( 9 )]
+position = Vector2( 8, 32 )
+
+[node name="Tree4" parent="Level/Trees" instance=ExtResource( 9 )]
+position = Vector2( 304, 8 )

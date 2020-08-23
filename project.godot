@@ -19,6 +19,10 @@ config/name="Action RPG"
 run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+PlayerStats="*res://Resources/Player/PlayerStats.tscn"
+
 [display]
 
 window/size/width=320
@@ -101,7 +105,9 @@ ui_shift={
 2d_physics/layer_3="PlayerHurtBox"
 2d_physics/layer_4="EnemyHurtBox"
 2d_physics/layer_5="Enemy"
+2d_physics/layer_6="SoftColissions"
 
 [rendering]
 
+quality/2d/use_pixel_snap=true
 environment/default_environment="res://default_env.tres"
