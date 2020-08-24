@@ -16,6 +16,7 @@ onready var hurtBox = $Hurtbox
 onready var softCollission = $SoftCollision
 onready var wanderController = $WanderController
 onready var animatedSprite = $AnimatedSprite
+onready var animationPlayer = $BlinkAnimationPlayer
 
 enum {
 	IDLE,
@@ -25,6 +26,7 @@ enum {
 
 
 func _ready():
+	animatedSprite.frame = rand_range(0, 4)
 	state = pick_random_state([IDLE, WANDER])
 
 
@@ -104,5 +106,14 @@ func _on_Hurtbox_area_entered(area):
 func _on_Stats_no_health():
 	var enemyDeathEffect = EnemyDeathEffect.instance()
 	get_parent().add_child(enemyDeathEffect)
+	
 	enemyDeathEffect.global_position = global_position
 	queue_free()
+
+
+func _on_Hurtbox_invicibility_ended():
+	animationPlayer.play("Stop")
+
+
+func _on_Hurtbox_invicibility_started():
+	animationPlayer.play("Start")

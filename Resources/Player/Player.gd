@@ -4,6 +4,7 @@ onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
 onready var hurtBox = $Hurtbox
+onready var blinkAnimationPlayer = $BlinkAnimationPlayer
 export var ACCELERATION = 500
 export var MAX_SPEED = 80
 export var ROLL_SPEED = 120
@@ -92,6 +93,16 @@ func roll_animation_finished():
 
 
 func _on_Hurtbox_area_entered(area: Area2D):
-	stats.health -= 1
+	stats.health -= area.damage
 	hurtBox.start_invicibility(0.8)
+	blinkAnimationPlayer.play("Start")
 	hurtBox.create_hit_effect()
+
+
+func _on_Hurtbox_invicibility_started():
+	#blinkAnimationPlayer.play("Start")
+	pass
+
+
+func _on_Hurtbox_invicibility_ended():
+	blinkAnimationPlayer.play("Stop")
