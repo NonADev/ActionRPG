@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://Resources/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Player/Player.png" type="Texture" id=2]
@@ -8,6 +8,9 @@
 [ext_resource path="res://Resources/Music and Sounds/Evade.wav" type="AudioStream" id=6]
 [ext_resource path="res://Resources/Music and Sounds/Swipe.wav" type="AudioStream" id=7]
 [ext_resource path="res://White_color_shader.shader" type="Shader" id=8]
+
+[sub_resource type="OccluderPolygon2D" id=51]
+polygon = PoolVector2Array( -4, -16, 2, -15, 3, 1, -4, 1 )
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 8 )
@@ -756,6 +759,9 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource( 51 )
 
 [node name="ShadowSprite" type="Sprite" parent="."]
 position = Vector2( 0, 2 )
