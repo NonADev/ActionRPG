@@ -504,7 +504,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 [node name="Scene" type="Node2D"]
 
 [node name="PlayerCamera" parent="." instance=ExtResource( 10 )]
-position = Vector2( 168, 80 )
+position = Vector2( 192, 0 )
 current = true
 
 [node name="PositionTop" parent="PlayerCamera/Node" index="0"]
@@ -521,14 +521,14 @@ margin_top = 3.0
 margin_right = 60.0
 margin_bottom = 14.0
 
-[node name="BackGround" type="CanvasLayer" parent="."]
+[node name="Map" type="CanvasLayer" parent="."]
 layer = -1
 follow_viewport_enable = true
 __meta__ = {
 "_editor_description_": "Acho que não vai ter"
 }
 
-[node name="Sprite" type="Sprite" parent="BackGround"]
+[node name="Sprite" type="Sprite" parent="Map"]
 visible = false
 position = Vector2( 160, 90 )
 texture = ExtResource( 3 )
@@ -538,139 +538,136 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="GrassTileMap" type="TileMap" parent="BackGround"]
+[node name="GrassTileMap" type="TileMap" parent="Map"]
 tile_set = SubResource( 1 )
 format = 1
 tile_data = PoolIntArray( -1, 0, 0, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, -65532, 0, 0, -65531, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 131071, 0, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 196607, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0 )
 
-[node name="DirtPathTileMap" type="TileMap" parent="BackGround"]
+[node name="DirtPathTileMap" type="TileMap" parent="Map"]
 tile_set = SubResource( 2 )
 cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( -65528, 0, 0, -65527, 0, 2, 8, 0, 65536, 9, 0, 65538, 65544, 0, 131072, 65545, 0, 9, 65546, 0, 1, 65547, 0, 1, 65548, 0, 1, 65549, 0, 2, 131081, 0, 65536, 131082, 0, 65537, 131083, 0, 65537, 131084, 0, 65537, 131085, 0, 65538, 196614, 0, 0, 196615, 0, 1, 196616, 0, 1, 196617, 0, 131078, 196618, 0, 65537, 196619, 0, 65537, 196620, 0, 65537, 196621, 0, 65538, 327679, 0, 0, 262144, 0, 1, 262145, 0, 1, 262146, 0, 1, 262147, 0, 1, 262148, 0, 5, 262149, 0, 196609, 262150, 0, 196614, 262151, 0, 131073, 262152, 0, 131073, 262153, 0, 131073, 262154, 0, 131073, 262155, 0, 65542, 262156, 0, 65537, 262157, 0, 131077, 262158, 0, 1, 262159, 0, 1, 262160, 0, 1, 262161, 0, 1, 262162, 0, 1, 262163, 0, 2, 393215, 0, 65536, 327680, 0, 65537, 327681, 0, 65537, 327682, 0, 65537, 327683, 0, 65541, 327684, 0, 131074, 327691, 0, 131072, 327692, 0, 131073, 327693, 0, 131073, 327694, 0, 131073, 327695, 0, 131073, 327696, 0, 131073, 327697, 0, 131073, 327698, 0, 131073, 327699, 0, 131074, 458751, 0, 131072, 393216, 0, 131073, 393217, 0, 131073, 393218, 0, 131073, 393219, 0, 131074, 655374, 0, 0, 655375, 0, 1, 655376, 0, 1, 655377, 0, 2, 720903, 0, 196608, 720904, 0, 196610, 720908, 0, 196608, 720909, 0, 196609, 720910, 0, 196614, 720911, 0, 131073, 720912, 0, 131073, 720913, 0, 131074 )
 
-[node name="DirtClifTileMap" type="TileMap" parent="BackGround"]
+[node name="DirtClifTileMap" type="TileMap" parent="Map"]
 tile_set = SubResource( 50 )
 cell_size = Vector2( 32, 32 )
 collision_mask = 0
 format = 1
 tile_data = PoolIntArray( -1, 0, 0, -65536, 0, 1, -65535, 0, 1, -65534, 0, 1, -65533, 0, 2, -65528, 0, 0, -65527, 0, 1, -65526, 0, 2, 65535, 0, 65536, 0, 0, 65541, 1, 0, 131073, 2, 0, 131073, 3, 0, 131074, 8, 0, 131072, 9, 0, 65544, 10, 0, 131074, 131071, 0, 131072, 65536, 0, 131074, 65545, 0, 131075, 196612, 0, 3, 196617, 0, 0, 196618, 0, 2, 262146, 0, 0, 262147, 0, 1, 262148, 0, 131079, 262152, 0, 196608, 262153, 0, 196617, 262154, 0, 131074, 327680, 0, 196608, 327681, 0, 196609, 327682, 0, 196614, 327683, 0, 131073, 327684, 0, 131074, 327689, 0, 131075 )
 
-[node name="Level" type="YSort" parent="."]
+[node name="Level" type="YSort" parent="Map"]
 
-[node name="Player" parent="Level" instance=ExtResource( 1 )]
-position = Vector2( 168, 80 )
+[node name="Player" parent="Map/Level" instance=ExtResource( 1 )]
+position = Vector2( 192, 0 )
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Level/Player"]
-remote_path = NodePath("../../../PlayerCamera")
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Map/Level/Player"]
+remote_path = NodePath("../../../../PlayerCamera")
 
-[node name="Bushes" type="YSort" parent="Level"]
+[node name="Bushes" type="YSort" parent="Map/Level"]
 
-[node name="Bush" parent="Level/Bushes" instance=ExtResource( 2 )]
+[node name="Bush" parent="Map/Level/Bushes" instance=ExtResource( 2 )]
 position = Vector2( 104, 104 )
 
-[node name="Bush2" parent="Level/Bushes" instance=ExtResource( 2 )]
+[node name="Bush2" parent="Map/Level/Bushes" instance=ExtResource( 2 )]
 position = Vector2( 72, 56 )
 
-[node name="Bush3" parent="Level/Bushes" instance=ExtResource( 2 )]
+[node name="Bush3" parent="Map/Level/Bushes" instance=ExtResource( 2 )]
 position = Vector2( 264, 56 )
 
-[node name="Bush4" parent="Level/Bushes" instance=ExtResource( 2 )]
+[node name="Bush4" parent="Map/Level/Bushes" instance=ExtResource( 2 )]
 position = Vector2( 216, 120 )
 
-[node name="Bush5" parent="Level/Bushes" instance=ExtResource( 2 )]
+[node name="Bush5" parent="Map/Level/Bushes" instance=ExtResource( 2 )]
 position = Vector2( 176, 152 )
 
-[node name="Bush6" parent="Level/Bushes" instance=ExtResource( 2 )]
+[node name="Bush6" parent="Map/Level/Bushes" instance=ExtResource( 2 )]
 position = Vector2( 240, 144 )
 
-[node name="Grass" type="YSort" parent="Level"]
+[node name="Grass" type="YSort" parent="Map/Level"]
 
-[node name="Grass" parent="Level/Grass" instance=ExtResource( 6 )]
+[node name="Grass" parent="Map/Level/Grass" instance=ExtResource( 6 )]
 position = Vector2( 48, 144 )
 
-[node name="Grass13" parent="Level/Grass" instance=ExtResource( 6 )]
+[node name="Grass13" parent="Map/Level/Grass" instance=ExtResource( 6 )]
 position = Vector2( 104, 160 )
 DESTRUTIBLE = false
 
-[node name="Grass16" parent="Level/Grass" instance=ExtResource( 6 )]
+[node name="Grass16" parent="Map/Level/Grass" instance=ExtResource( 6 )]
 position = Vector2( 88, 0 )
 DESTRUTIBLE = false
 
-[node name="Grass17" parent="Level/Grass" instance=ExtResource( 6 )]
+[node name="Grass17" parent="Map/Level/Grass" instance=ExtResource( 6 )]
 position = Vector2( 72, 0 )
 DESTRUTIBLE = false
 
-[node name="Grass14" parent="Level/Grass" instance=ExtResource( 6 )]
+[node name="Grass14" parent="Map/Level/Grass" instance=ExtResource( 6 )]
 position = Vector2( 88, 144 )
 DESTRUTIBLE = false
 
-[node name="Grass15" parent="Level/Grass" instance=ExtResource( 6 )]
+[node name="Grass15" parent="Map/Level/Grass" instance=ExtResource( 6 )]
 position = Vector2( 88, 160 )
 DESTRUTIBLE = false
 
-[node name="Grass2" parent="Level/Grass" instance=ExtResource( 6 )]
+[node name="Grass2" parent="Map/Level/Grass" instance=ExtResource( 6 )]
 position = Vector2( 32, 144 )
 
-[node name="Grass3" parent="Level/Grass" instance=ExtResource( 6 )]
+[node name="Grass3" parent="Map/Level/Grass" instance=ExtResource( 6 )]
 position = Vector2( 16, 144 )
 
-[node name="Grass4" parent="Level/Grass" instance=ExtResource( 6 )]
+[node name="Grass4" parent="Map/Level/Grass" instance=ExtResource( 6 )]
 position = Vector2( 48, 128 )
 
-[node name="Grass5" parent="Level/Grass" instance=ExtResource( 6 )]
+[node name="Grass5" parent="Map/Level/Grass" instance=ExtResource( 6 )]
 position = Vector2( 32, 32 )
 
-[node name="Grass6" parent="Level/Grass" instance=ExtResource( 6 )]
+[node name="Grass6" parent="Map/Level/Grass" instance=ExtResource( 6 )]
 position = Vector2( 240, 0 )
 
-[node name="Grass7" parent="Level/Grass" instance=ExtResource( 6 )]
+[node name="Grass7" parent="Map/Level/Grass" instance=ExtResource( 6 )]
 position = Vector2( 224, 0 )
 
-[node name="Grass8" parent="Level/Grass" instance=ExtResource( 6 )]
+[node name="Grass8" parent="Map/Level/Grass" instance=ExtResource( 6 )]
 position = Vector2( 272, 112 )
 
-[node name="Grass9" parent="Level/Grass" instance=ExtResource( 6 )]
+[node name="Grass9" parent="Map/Level/Grass" instance=ExtResource( 6 )]
 position = Vector2( 256, 112 )
 
-[node name="Grass10" parent="Level/Grass" instance=ExtResource( 6 )]
+[node name="Grass10" parent="Map/Level/Grass" instance=ExtResource( 6 )]
 position = Vector2( 272, 96 )
 
-[node name="Grass11" parent="Level/Grass" instance=ExtResource( 6 )]
+[node name="Grass11" parent="Map/Level/Grass" instance=ExtResource( 6 )]
 position = Vector2( 160, 112 )
 
-[node name="Grass12" parent="Level/Grass" instance=ExtResource( 6 )]
+[node name="Grass12" parent="Map/Level/Grass" instance=ExtResource( 6 )]
 position = Vector2( 192, 144 )
 
-[node name="Grass19" parent="Level/Grass" instance=ExtResource( 6 )]
+[node name="Grass19" parent="Map/Level/Grass" instance=ExtResource( 6 )]
 position = Vector2( 192, 128 )
 
-[node name="Grass18" parent="Level/Grass" instance=ExtResource( 6 )]
+[node name="Grass18" parent="Map/Level/Grass" instance=ExtResource( 6 )]
 position = Vector2( 208, 128 )
 
-[node name="Enemies" type="YSort" parent="Level"]
+[node name="Enemies" type="YSort" parent="Map/Level"]
 
-[node name="Bat" parent="Level/Enemies" instance=ExtResource( 7 )]
-position = Vector2( 184, 24 )
-
-[node name="Bat2" parent="Level/Enemies" instance=ExtResource( 7 )]
+[node name="Bat2" parent="Map/Level/Enemies" instance=ExtResource( 7 )]
 position = Vector2( 216, 160 )
 
-[node name="Bat4" parent="Level/Enemies" instance=ExtResource( 7 )]
+[node name="Bat4" parent="Map/Level/Enemies" instance=ExtResource( 7 )]
 position = Vector2( 40, 96 )
 
-[node name="Trees" type="YSort" parent="Level"]
+[node name="Trees" type="YSort" parent="Map/Level"]
 
-[node name="Tree" parent="Level/Trees" instance=ExtResource( 9 )]
+[node name="Tree" parent="Map/Level/Trees" instance=ExtResource( 9 )]
 position = Vector2( 232, 56 )
 
-[node name="Tree2" parent="Level/Trees" instance=ExtResource( 9 )]
+[node name="Tree2" parent="Map/Level/Trees" instance=ExtResource( 9 )]
 position = Vector2( 120, 152 )
 
-[node name="Tree3" parent="Level/Trees" instance=ExtResource( 9 )]
+[node name="Tree3" parent="Map/Level/Trees" instance=ExtResource( 9 )]
 position = Vector2( 8, 32 )
 
-[node name="Tree4" parent="Level/Trees" instance=ExtResource( 9 )]
+[node name="Tree4" parent="Map/Level/Trees" instance=ExtResource( 9 )]
 position = Vector2( 304, 8 )
 
 [editable path="PlayerCamera"]
